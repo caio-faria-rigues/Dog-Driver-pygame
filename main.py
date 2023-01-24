@@ -10,6 +10,9 @@ alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n"
 
 
 def hangman():
+    """
+    return random words from words.csv, with a version that hasn't accents; both in a list.
+    """
     with open("words.csv", "r", encoding="utf-8") as words:
         reader = csv.reader(words)
 
@@ -27,6 +30,9 @@ def main():
     pygame.init()
 
     screen = pygame.display.set_mode((720, 1280))
+    timer = pygame.time.Clock()
+
+    timer.tick(60)
 
     x, y = screen.get_size()
 
@@ -46,10 +52,15 @@ def main():
 
     while True:
 
+        # quit the game
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
+            if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
 
         scenario_y_pos += scenario_fall if scenario_y_pos <= 0 else -1200
         # letter_y_pos += letter_fall
