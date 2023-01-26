@@ -5,8 +5,8 @@ import csv
 import unidecode
 
 
-alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v"
-            , "w", "x", "y", "z"]
+alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
+            "v", "w", "x", "y", "z"]
 
 
 def hangman():
@@ -22,6 +22,21 @@ def hangman():
             word_no_accent = unidecode.unidecode(word_original)
 
     return [word_original, word_no_accent]
+
+
+def falling_letters():
+    """
+    return a dict with 5 random letters and their respective X-axis position on screen.
+    """
+    global alphabet
+    letter_list = []
+    for n in range(5):
+        letter_list.append(alphabet[randint(0, 24)])
+
+    letter_objects = {letter_list[0]: randint(50, 640), letter_list[1]: randint(50, 640),
+                      letter_list[2]: randint(50, 640), letter_list[3]: randint(50, 640),
+                      letter_list[4]: randint(50, 640)}
+    return letter_objects
 
 
 def main():
@@ -81,4 +96,5 @@ def main():
 
 
 hangman()
+falling_letters()
 main()
